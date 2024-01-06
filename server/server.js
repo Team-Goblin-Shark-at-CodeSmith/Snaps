@@ -5,23 +5,25 @@ const PORT = 3000;
 
 const userRouter = require('./routes/userRouter');
 
+
 // Handle parsing of request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+
 // Handle requests for static files
 app.use(express.static(path.resolve(__dirname, '../public')));
 
+
 // Define route handlers
 app.use('/user', userRouter);
-
-
 
 
 // Catch-all route handler
 app.use('/*', (req, res) => {
   return res.status(404).send('Page not found - 404');
 })
+
 
 // Global Error Handler
 app.use((err, req, res, next) => {
@@ -35,9 +37,11 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 })
 
+
 // Server listening on PORT 3000
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 })
+
 
 module.exports = app;

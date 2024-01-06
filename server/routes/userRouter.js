@@ -4,8 +4,8 @@ const router = express.Router();
 
 const userController = require('../controllers/userController');
 
-router.get('/login', userController.login, (req,res) => {
-    res.status(200).json()
+router.get('/login/:username/:password', userController.login, (req,res) => {
+  return res.status(200).json(res.locals.user);
 });
 
 //router.post('/signup', userController.signup, (req,res) => {
