@@ -13,13 +13,10 @@ userController.login = async(req, res, next) => {
         values: [req.params.username, req.params.password],
       };
       const user = await db.query(queryObj);
-      console.log(user);
-
+      // console.log(user);
       res.locals.user = user.rows;
-      console.log('this is user', user);
-
+      // console.log('this is user', user);
       return next();
-
     } catch {
       const err = {
         log: 'Express error handler caught error in userController.login',
@@ -28,16 +25,29 @@ userController.login = async(req, res, next) => {
       }
       return next(err);
     }
-
-  // Check if user exists in db
-
-
-
-
-    return next();
 }
 
+userController.signup = async(req, res, next) => {
 
+  try {
+    const queryObj = {
+      text: 'INSERT INTO Users (username, password) VALUES ($1, $2)',
+      values: [req.body.username, req.body.password],
+    };
+    const newUser = await db.query(queryObj);
+    // console.log(user);
+    res.locals.newUser = newUser.rows;
+    // console.log('this is user', user);
+    return next();
+  } catch {
+    const err = {
+      log: 'Express error handler caught error in userController.signup',
+      status: 500,
+      message: { err: 'A massive error occured' },
+    }
+    return next(err);
+  }
+}
 
 
 

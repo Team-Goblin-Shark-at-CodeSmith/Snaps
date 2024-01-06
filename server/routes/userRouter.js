@@ -8,9 +8,9 @@ router.get('/login/:username/:password', userController.login, (req,res) => {
   return res.status(200).json(res.locals.user);
 });
 
-//router.post('/signup', userController.signup, (req,res) => {
-//     res.status(200).json()
-// })
+router.post('/signup', userController.signup, (req,res) => {
+  return res.status(200).json('Sign-up Success');
+});
 
 
 module.exports = router;

@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3000;
 
 const userRouter = require('./routes/userRouter');
+const snapsRouter = require('./routes/snapsRouter');
 
 
 // Handle parsing of request body
@@ -17,6 +18,7 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 
 // Define route handlers
 app.use('/user', userRouter);
+app.use('/my-snaps', snapsRouter);
 
 
 // Catch-all route handler
