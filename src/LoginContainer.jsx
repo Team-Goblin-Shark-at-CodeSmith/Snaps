@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
 import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { setSnapsList } from "./snapsSlice";
 
 
 const LoginContainer = () => {
@@ -19,8 +20,12 @@ const LoginContainer = () => {
             .then(value => {
 
 
+                            
+                console.log( "Reached the fetch request and received values " , value );
+
+
+                dispatch(setSnapsList(value));
                 
-                console.log( "Reached the fetch request" );
 
 
             })
@@ -29,6 +34,7 @@ const LoginContainer = () => {
     }
 
     return (
+        
 
         <div className="login">
 
