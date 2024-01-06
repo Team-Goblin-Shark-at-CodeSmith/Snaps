@@ -25,13 +25,18 @@ module.exports = {
       {
           test: /\.(js|jsx)$/,    //kind of file extension this rule should look for and apply in test
           exclude: /node_modules/, //folder to be excluded
-          use:  'babel-loader' //loader which we are going to use
+          use: {
+            loader: 'babel-loader', //loader which we are going to use
+            options: {
+                presets: ['@babel/preset-env', '@babel/preset-react']
+            }
+          } 
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'file-loader'
           },
         ]
       }
