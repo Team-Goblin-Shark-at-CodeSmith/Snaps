@@ -9,7 +9,7 @@ router.get('/login/:username/:password', userController.login, (req,res) => {
 });
 
 router.post('/signup', userController.signup, (req,res) => {
-  return res.status(200).json('Sign-up Success');
+  return res.status(200).json(res.locals.newUser);
 });
 
 

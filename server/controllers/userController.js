@@ -35,8 +35,8 @@ userController.signup = async(req, res, next) => {
       values: [req.body.username, req.body.password],
     };
     const newUser = await db.query(queryObj);
-    // console.log(user);
-    res.locals.newUser = newUser.rows;
+    console.log(newUser, 'newuser');
+    res.locals.newUser = newUser;
     // console.log('this is user', user);
     return next();
   } catch {
