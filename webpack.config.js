@@ -16,8 +16,7 @@ module.exports = {
     hot: true ,
     liveReload: true,
     proxy: {
-      // '/feed': 'http://localhost:3000'
-      '/user/login' : 'http://localhost:3000'
+      '/user' : 'http://localhost:3000',
     }
   },
   module: {
@@ -30,7 +29,7 @@ module.exports = {
             options: {
                 presets: ['@babel/preset-env', '@babel/preset-react']
             }
-          } 
+          }
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
