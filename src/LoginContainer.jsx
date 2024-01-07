@@ -43,7 +43,7 @@ const LoginContainer = () => {
             <label > Username: </label>
             <input type="text" id="username"></input>
             <label > Password: </label>
-            <input type="text" id="password"></input>
+            <input type="password" id="password"></input>
             <button id="Login" onClick={loginHandler}> Login </button>
             <button aria-label="Sign Up"> Sign Up </button>
 
