@@ -64,7 +64,8 @@ const LoginContainer = () => {
 
     //added placeholders instead of using labels
     <div className="login">
-      <h1 id="login-logo">Snaps</h1>
+      <img id="login-logo" src="./images/snaps-logo.png"/>
+      {/* <h1 id="login-logo">Snaps</h1> */}
       {/* <label > Username: </label> */}
       <input type="text" id="username" className="login-input" autoComplete='off' placeholder="Username"></input>
       {/* <label > Password: </label> */}
