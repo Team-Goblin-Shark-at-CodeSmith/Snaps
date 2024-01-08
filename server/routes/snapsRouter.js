@@ -6,7 +6,8 @@ const snapsController = require('../controllers/snapsController');
 
 
 router.post('/', snapsController.addSnap, (req,res) => {
-  return res.status(200).json('Add Snap Success');
+  console.log(res.locals.newSnap)
+  return res.status(200).json(res.locals.allSnaps);
 });
 
 

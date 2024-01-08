@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: process.env.NODE_ENV,
@@ -16,6 +17,7 @@ module.exports = {
     liveReload: true,
     proxy: {
       '/user': 'http://localhost:3000',
+      '/my-snaps': 'http://localhost:3000'
     },
   },
   module: {
@@ -49,5 +51,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './template.html',
     }),
+    new Dotenv(),
   ],
 };

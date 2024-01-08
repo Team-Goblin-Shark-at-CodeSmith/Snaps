@@ -1,5 +1,6 @@
 const db = require('../models/snapsModel');
 
+
 const userController = {};
 
 userController.login = async (req, res, next) => {
@@ -11,7 +12,7 @@ userController.login = async (req, res, next) => {
   );
   try {
     const queryObj = {
-      text: 'SELECT Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
+      text: 'SELECT Snaps.user_id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
       values: [req.params.username, req.params.password],
     };
     const user = await db.query(queryObj);
@@ -23,7 +24,7 @@ userController.login = async (req, res, next) => {
     const err = {
       log: 'Express error handler caught error in userController.login',
       status: 500,
-      message: { err: 'A massive error occured' },
+      message: { err: 'A massive error occured' + JSON.stringify(process.env) },
     };
     return next(err);
   }
