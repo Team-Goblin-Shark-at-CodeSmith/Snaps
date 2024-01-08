@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+//URI is the connection between the server database 
+
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV, 
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),

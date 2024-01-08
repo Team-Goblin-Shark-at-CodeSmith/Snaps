@@ -7,17 +7,19 @@ import { setSnapsList } from "./snapsSlice";
 
 const LoginContainer = () => {
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch();  //REDUX Sending to reducer (LOOK AT SLIDES AND DOCS)
+
+  const navigate = useNavigate(); // React router Changes URL ( look at import to see where its coming from )
 
   const loginHandler = (e) =>{
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
 
-    fetch(`/user/login/${username}/${password}` , {})
+    const username = document.getElementById('username').value; //?
+    const password = document.getElementById('password').value; //? DOM mainpulation
+
+    fetch(`/user/login/${username}/${password}` , {}) 
       .then(result => result.json()) //value is set equal to the async result of 'result' sp result will equal value
-      .then(value => {
+      .then(value => { //Users Snaps List parsed
 
           // Reset text field inputs to be empty after login pressed
           document.getElementById('username').value = '';
@@ -26,8 +28,10 @@ const LoginContainer = () => {
           console.log( "Reached the fetch request and received values " , value );
 
 
-          dispatch(setSnapsList(value));
+          //Sending Snaps list to snapsSlice
+          dispatch(setSnapsList(value)); //Creating a action and setSnapsList is our reducer
         
+          //Redirecting to snaps URL
           navigate("/snaps")  
           
 
@@ -39,13 +43,14 @@ const LoginContainer = () => {
 
   const signupHandler = (e) => {
 
+    //creating variable for the input section for the username and password
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     // Might have to check the endpoint and also the properties because why doesn't dev server proxy work?
     fetch('http://localhost:3000/user/signup' , {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'no-cors', //?
       headers: {
         'Content-Type': 'application/json',
      },
@@ -53,6 +58,8 @@ const LoginContainer = () => {
     })
       .then(res => {
         const name = document.getElementById('username').value
+
+        //reseting values in username and password section
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
 
@@ -60,6 +67,7 @@ const LoginContainer = () => {
       })
       .catch(() => {console.log('Error in signupHandler')});
   }
+
 
 
 

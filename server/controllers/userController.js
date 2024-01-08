@@ -8,12 +8,16 @@ userController.login = async(req, res, next) => {
     console.log('this is req.params stuff',req.params.username, req.params.password);
     try {
 
+
       const queryObj = {
+        //where we set $1 and $2 we are setting parameter values so they can be subsituted with what was provided by the front end
         text: 'SELECT Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
         values: [req.params.username, req.params.password],
       };
+      //Taking the data for each user 
       const user = await db.query(queryObj);
       // console.log(user);
+      //user.rows is the data (URL , Snaps)
       res.locals.user = user.rows;
       // console.log('this is user', user);
       return next();
@@ -30,7 +34,7 @@ userController.login = async(req, res, next) => {
 userController.signup = async(req, res, next) => {
 
   try {
-    const queryObj = {
+    const queryObj = {                                     //$1 is the first value in a value
       text: 'INSERT INTO Users (username, password) VALUES ($1, $2)',
       values: [req.body.username, req.body.password],
     };

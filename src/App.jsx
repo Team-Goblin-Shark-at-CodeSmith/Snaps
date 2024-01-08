@@ -10,7 +10,8 @@ const App = () => {
 
         <Router>
             <Routes>
-                <Route path="/" element={<LoginContainer />} />
+                {/* react Router */}
+                <Route path="/" element={<LoginContainer />} />  
                 <Route path="/snaps" element={<SnapsContainer />} />
             </Routes>
         </Router>
