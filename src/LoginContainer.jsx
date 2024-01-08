@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
 import { setSnapsList } from "./snapsSlice";
 
 
 
 const LoginContainer = () => {
 
-  //const count = useSelector((state) => state.counter.value)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const loginHandler = (e) =>{
 
@@ -27,6 +27,9 @@ const LoginContainer = () => {
 
 
           dispatch(setSnapsList(value));
+        
+          navigate("/snaps")  
+          
 
 
       })
