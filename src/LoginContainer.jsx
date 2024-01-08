@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom';
 import { setSnapsList } from "./snapsSlice";
 
 
+
 const LoginContainer = () => {
 
   //const count = useSelector((state) => state.counter.value)
@@ -61,15 +62,15 @@ const LoginContainer = () => {
 
   return (
 
-
+    //added placeholders instead of using labels
     <div className="login">
-
-      <label > Username: </label>
-      <input type="text" id="username" autoComplete='off'></input>
-      <label > Password: </label>
-      <input type="password" id="password"></input>
+      <h1 id="login-logo">Snaps</h1>
+      {/* <label > Username: </label> */}
+      <input type="text" id="username" className="login-input" autoComplete='off' placeholder="Username"></input>
+      {/* <label > Password: </label> */}
+      <input type="password" id="password" className="login-input" placeholder="Password"></input>
       <button id="Login" onClick={loginHandler}> Login </button>
-      <button aria-label="Sign Up" onClick={signupHandler}> Sign Up </button>
+      <button id="signup-button" aria-label="Sign Up" onClick={signupHandler}>Don't have an account? <span id="signup-blue">  Sign Up</span> </button>
 
 
     </div>
