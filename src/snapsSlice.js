@@ -13,6 +13,7 @@ const snapsSlice = createSlice ({
     initialState,
     reducers: {
         setSnapsList: (state, action) => {
+            state.snapsList = [];
             for (let i = 0; i < action.payload.length; i++){
                 state.snapsList.push(action.payload[i]);
             }

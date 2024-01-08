@@ -10,8 +10,15 @@ snapsController.addSnap = async(req, res, next) => {
       values: [req.body.user_id, req.body.title, req.body.url, req.body.snap_text],
     };
 
-    const newSnap = await db.query(queryObj);
-    res.locals.newSnap = newSnap.rows;
+    await db.query(queryObj);
+
+    const getAllQuery = {
+      text: 'SELECT Snaps.user_id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Snaps.user_id = $1;',
+      values: [req.body.user_id],
+    };
+    const allSnaps = await db.query(getAllQuery);
+    // console.log(user);
+    res.locals.allSnaps = allSnaps.rows;
 
     return next();
   } catch {
