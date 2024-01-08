@@ -2,6 +2,7 @@ import React from "react";
 import LoginContainer from "./LoginContainer.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './stylesheets/styles.css';
+import SnapsContainer from "./SnapsContainer.jsx";
 
 const App = () => {
 
@@ -10,6 +11,7 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<LoginContainer />} />
+                <Route path="/snaps" element={<SnapsContainer />} />
             </Routes>
         </Router>
 
