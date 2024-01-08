@@ -41,22 +41,19 @@ const LoginContainer = () => {
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    console.log(username, password)
 
     // Might have to check the endpoint and also the properties because why doesn't dev server proxy work?
-    fetch('http://localhost:3000/user/signup' , {
+    fetch('/user/signup' , {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
      },
       body: JSON.stringify({ username: username, password: password })
     })
       .then(res => {
-        const name = document.getElementById('username').value
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
-
-        console.log(`Made user --> ${name}`);
       })
       .catch(() => {console.log('Error in signupHandler')});
   }
@@ -68,14 +65,10 @@ const LoginContainer = () => {
     //added placeholders instead of using labels
     <div className="login">
       <img id="login-logo" src="./images/snaps-logo.png"/>
-      {/* <h1 id="login-logo">Snaps</h1> */}
-      {/* <label > Username: </label> */}
       <input type="text" id="username" className="login-input" autoComplete='off' placeholder="Username"></input>
-      {/* <label > Password: </label> */}
       <input type="password" id="password" className="login-input" placeholder="Password"></input>
       <button id="Login" onClick={loginHandler}> Login </button>
       <button id="signup-button" aria-label="Sign Up" onClick={signupHandler}>Don't have an account? <span id="signup-blue">  Sign Up</span> </button>
-
 
     </div>
 
