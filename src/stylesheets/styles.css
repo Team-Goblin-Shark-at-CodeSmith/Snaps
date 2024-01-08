@@ -2,6 +2,14 @@ html {
     height: 100%;
 }
 
+#root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
 body {
     height: 100%;
     width: 100%;
@@ -16,6 +24,7 @@ body {
 
 h1{
     text-align: center;
+    margin: 40px auto;
 }
 
 .login{
@@ -24,7 +33,7 @@ h1{
     flex-direction: column;
     width: 350px;
     height: 400px;
-    margin-top: 30%;
+    margin-top: 12%;
     border-radius: 10px;
     border: 0.5px solid rgb(211, 217, 223);
     box-shadow: 1px 1px 2px 2px  rgba(229, 232, 235, 0.4);
@@ -71,3 +80,65 @@ h1{
     color:  #64b4fc;
     font-weight: bold;
 }
+
+/* Every thing below is from snaps page  */
+
+
+table {
+    border-radius: 10px;
+   
+}
+
+#snaps-container {
+
+    width: 100%;
+    height: 100%;
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+}
+
+#snaps-container > *{ 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a, a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #64b4fc;
+    text-decoration: underline;
+}
+
+.snaps-table {
+    width: 60%;
+    background-color: white;
+    border: 1px solid black;
+    border-collapse: collapse;
+   
+}
+
+.snaps-table.container {
+    width: 70%;
+    border-radius: 10px;
+}
+
+.snaps-table.elements {
+    font-size: 14px;
+    padding: 5px 10px;
+    width: 50%;
+}
+
+.snaps-table.elements.title {
+    width: 30%
+}  
+
+.snaps-table.elements.text {
+    width: 70%
+}
+

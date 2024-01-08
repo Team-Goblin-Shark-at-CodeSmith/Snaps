@@ -16,7 +16,10 @@ const SnapsContainer = () => {
     console.log(" SNAPS LIST FROM STATE ", snapsList);
 
     //create a variable to hold all snap components
-    const snapsComponentList = []; 
+    const snapsComponentList = [<tr>
+        <th>Title</th>
+        <th id="snap-text">Snap</th>
+      </tr>]; 
 
     for (let i = 0; i < snapsList.length; i++){
 
@@ -35,11 +38,13 @@ const SnapsContainer = () => {
     
 
 return(
-    <div>
-        <button id= 'Signout-button' onClick={returnToSignup} > fuck </button>
-         <ul>
+   
+    <div id="snaps-container">
+        <h1>My Snaps</h1>
+         <table className="snaps-table container">
             {snapsComponentList}
-         </ul>
+         </table>
+        <button id= 'Signout-button' onClick={returnToSignup} > Signout </button>
     </div>
 );
 }
