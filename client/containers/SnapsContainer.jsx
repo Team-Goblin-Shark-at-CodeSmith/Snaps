@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import Snap from "./Snap.jsx";
-import { setSnapsList } from "./snapsSlice";
+import Snap from "../components/Snap.jsx";
+import { setSnapsList } from "../redux/snapsSlice.js";
 
 
 
