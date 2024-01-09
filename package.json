@@ -2,7 +2,7 @@
   "name": "snaps",
   "version": "1.0.0",
   "description": "Users can save a list of article summaries to their account to read them all in one place.",
-  "main": "./src/index.js",
+  "main": "./client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
