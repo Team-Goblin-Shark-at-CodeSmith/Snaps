@@ -4,20 +4,21 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './stylesheets/styles.css';
 import SnapsContainer from "./containers/SnapsContainer.jsx";
 import SignupContainer from "./containers/SignupContainer.jsx"
-import Navbar from "./containers/SnapsContainer.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 const App = () => {
 
-    return (
-        <div>
+    return (         
+        <div className="main-div">
             <Router>
+                <Navbar />                  
                 <Routes>
                     <Route path="/" element={<LoginContainer />} />
-                <Route path="/signup" element={<SignupContainer />} />
+                    <Route path="/signup" element={<SignupContainer />} />
                     <Route path="/snaps" element={<SnapsContainer />} />
                 </Routes>
             </Router>
-        </div>
+        </div>            
     )
 }
 
