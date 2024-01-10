@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Snap from "../components/Snap.jsx";
 import { setSnapsList } from "../redux/snapsSlice.js";
+import scrapePage from '../puppeteer.js';
 
 const SnapsContainer = () => {
   const snapsList = useSelector((state) => state.snaps.snapsList);
@@ -31,9 +32,11 @@ const SnapsContainer = () => {
     console.log(process.env.REACT_APP_OPENAI_KEY);
   };
 
-  const handleAdd = (e) => {
-    // Query OpenAI API
-    // Store ChatGPT summary in database for user
+  const handleAdd = async (e) => {
+    const pageIntro = await scrapePage();
+    console.log(pageIntro);
+    // // Query OpenAI API
+    // // Store ChatGPT summary in database for user
     let translated = (async () => {
       const rawResponse = await fetch(
         "https://api.openai.com/v1/chat/completions",
