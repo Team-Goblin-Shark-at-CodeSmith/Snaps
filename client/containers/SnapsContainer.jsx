@@ -34,8 +34,7 @@ const SnapsContainer = () => {
   };
 
   const handleAdd = async (e) => {
-    const pageIntro = await scrapePage();
-    console.log(pageIntro);
+  
     // // Query OpenAI API
     // // Store ChatGPT summary in database for user
     let translated = (async () => {

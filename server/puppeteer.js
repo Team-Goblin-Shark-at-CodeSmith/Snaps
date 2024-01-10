@@ -1,13 +1,13 @@
 const puppeteer = require('puppeteer');
 
 const scrapePage = (async () => {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.goto('https://en.wikipedia.org/wiki/Simulation_hypothesis');
 
     const grabIntro = await page.evaluate(() => {
-        const pageText = document.querySelector('#mw-content-text p');
+        const pageText = document.querySelector('.mw-content-ltr mw-parser-output p', );
         return pageText.innerText;
     })
 
