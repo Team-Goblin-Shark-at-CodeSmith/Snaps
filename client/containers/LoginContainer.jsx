@@ -14,38 +14,21 @@ const LoginContainer = () => {
     fetch(`/user/login/${username}/${password}`, {})
       .then((result) => result.json()) //value is set equal to the async result of 'result' sp result will equal value
       .then((value) => {
-        navigate("/snaps");
         // Reset text field inputs to be empty after login pressed
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
 
         console.log("Reached the fetch request and received values ", value);
-        //place this somewhere else
+
         dispatch(setSnapsList(value));
+
+        navigate("/snaps");
       })
       .catch((error) => console.error(error));
   };
 
   const signupHandler = (e) => {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    console.log(username, password);
-
-    // Might have to check the endpoint and also the properties because why doesn't dev server proxy work?
-    fetch("/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then((res) => {
-        document.getElementById("username").value = "";
-        document.getElementById("password").value = "";
-      })
-      .catch(() => {
-        console.log("Error in signupHandler");
-      });
+    navigate("/signup");
   };
 
   return (
@@ -65,11 +48,15 @@ const LoginContainer = () => {
         className="login-input"
         placeholder="Password"
       ></input>
-      <button id="Login" onClick={loginHandler}>
+      <button className="Login" onClick={loginHandler}>
         {" "}
         Login{" "}
       </button>
-      <button id="signup-button" aria-label="Sign Up" onClick={signupHandler}>
+      <button
+        className="signup-button"
+        aria-label="Sign Up"
+        onClick={signupHandler}
+      >
         Don't have an account? <span id="signup-blue"> Sign Up</span>{" "}
       </button>
     </div>

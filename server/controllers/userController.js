@@ -4,31 +4,32 @@ const db = require('../models/snapsModel');
 const userController = {};
 
 userController.login = async (req, res, next) => {
-  console.log('inside login controller!');
-  console.log(
-    'this is req.params stuff',
+  console.log('req.params.username: ', req.params.username);
+  console.log('req.params.password: ', req.params.password);
+
+  const userQueryValues = [
     req.params.username,
-    req.params.password
-  );
-  try {
-    const queryObj = {
-      text: 'SELECT Snaps.user_id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
-      values: [req.params.username, req.params.password],
-    };
-    const user = await db.query(queryObj);
-    // console.log(user);
-    res.locals.user = user.rows;
-    // console.log('this is user', user);
-    return next();
-  } catch {
-    const err = {
-      log: 'Express error handler caught error in userController.login',
-      status: 500,
-      message: { err: 'A massive error occured' + JSON.stringify(process.env) },
-    };
-    return next(err);
-  }
-};
+    req.params.password,
+  ];
+
+  const userLoginQuery = `SELECT username
+    FROM users WHERE username = ${req.params.username}
+    AND password = ${req.params.password}`
+
+ try {
+   const user = await db.query(userLoginQuery);
+   console.log('User: ', user)
+   return next();
+ }
+ catch {
+  return next({
+    log: 'Error with SQL query',
+    message: 'Error with SQL query'
+  });
+ }
+
+  
+}
 
 userController.signup = async (req, res, next) => {
   try {
