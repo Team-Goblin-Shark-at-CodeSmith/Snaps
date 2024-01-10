@@ -77,7 +77,7 @@ const SnapsContainer = () => {
               headers: {
                 'Content-Type': 'application/json',
              },
-              body: JSON.stringify({ user_id: snapsList[0].user_id, title: userTitleInput, url: userUrlInput, snap_text: summary })
+              body: JSON.stringify({ user_id: snapsList[0].id, title: userTitleInput, url: userUrlInput, snap_text: summary })
             })
             .then(res => res.json())
             .then(res => {

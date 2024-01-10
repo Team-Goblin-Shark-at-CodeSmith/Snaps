@@ -12,7 +12,7 @@ userController.login = async (req, res, next) => {
   );
   try {
     const queryObj = {
-      text: 'SELECT Snaps.user_id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
+      text: 'SELECT Users.id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Users LEFT OUTER JOIN Snaps ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
       values: [req.params.username, req.params.password],
     };
     const user = await db.query(queryObj);
