@@ -14,6 +14,5 @@ module.exports = {
   },
 };
 
-//run file  qu.
-
-//add a couple more users 
+// pool.query('SELECT * FROM users')
+// .then((data) => console.log(data))

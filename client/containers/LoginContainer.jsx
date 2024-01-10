@@ -14,11 +14,11 @@ const LoginContainer = () => {
     const validLogin = false;
 
     await fetch(`/user/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: username, password: password })
+      body: JSON.stringify({ username: username, password: password }),
     })
       .then((result) => result.json()) //value is set equal to the async result of 'result' sp result will equal value
       .then((value) => {
@@ -26,7 +26,7 @@ const LoginContainer = () => {
 
         dispatch(setSnapsList(value));
         if (value === username) navigate("/snaps");
-        else alert('Username and/or password incorrect');
+        else alert("Username and/or password incorrect");
       })
       .catch((error) => console.error(error));
   };
