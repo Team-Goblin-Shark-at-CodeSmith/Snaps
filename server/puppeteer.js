@@ -1,4 +1,3 @@
-// const SnapsContainer = require('./containers/SnapsContainer');
 const puppeteer = require('puppeteer');
 
 const scrapePage = (async () => {
@@ -18,4 +17,4 @@ const scrapePage = (async () => {
     return grabIntro;
 })();
 
-export default scrapePage;
+module.exports = scrapePage;

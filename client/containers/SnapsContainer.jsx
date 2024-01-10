@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Snap from "../components/Snap.jsx";
 import { setSnapsList } from "../redux/snapsSlice.js";
-import scrapePage from '../puppeteer.js';
 
 const SnapsContainer = () => {
   const snapsList = useSelector((state) => state.snaps.snapsList);
