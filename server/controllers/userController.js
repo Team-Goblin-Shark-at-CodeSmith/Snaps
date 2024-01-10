@@ -4,31 +4,36 @@ const db = require('../models/snapsModel');
 const userController = {};
 
 userController.login = async (req, res, next) => {
-  console.log('req.params.username: ', req.params.username);
-  console.log('req.params.password: ', req.params.password);
+  console.log('req.body.username: ', req.body.username);
+  console.log('req.body.password: ', req.body.password);
 
   const userQueryValues = [
-    req.params.username,
-    req.params.password,
+    req.body.username,
+    req.body.password,
   ];
 
   const userLoginQuery = `SELECT username
-    FROM users WHERE username = ${req.params.username}
-    AND password = ${req.params.password}`
+    FROM users WHERE username = $1
+    AND password = $2`
 
- try {
-   const user = await db.query(userLoginQuery);
-   console.log('User: ', user)
-   return next();
- }
- catch {
-  return next({
-    log: 'Error with SQL query',
-    message: 'Error with SQL query'
-  });
- }
+  try {
+    const user = await db.query(userLoginQuery, userQueryValues);
 
-  
+    if (req.body.username === user.rows[0].username) {
+      console.log('USERNAME MATCHES');
+    }
+    res.locals.username = req.body.username;
+
+    return next();
+  }
+  catch {
+    return next({
+      log: 'Error with SQL query!!!',
+      message: 'Error with SQL query!!!'
+    });
+  }
+
+
 }
 
 userController.signup = async (req, res, next) => {
