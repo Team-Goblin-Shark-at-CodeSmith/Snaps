@@ -40,19 +40,6 @@ const LoginContainer = () => {
   const signupHandler = (e) => {
     navigate("/signup");
 
-    // // Might have to check the endpoint and also the properties because why doesn't dev server proxy work?
-    // fetch('/user/signup' , {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //  },
-    //   body: JSON.stringify({ username: username, password: password })
-    // })
-    //   .then(res => {
-    //     document.getElementById('username').value = '';
-    //     document.getElementById('password').value = '';
-    //   })
-    //   .catch(() => {console.log('Error in signupHandler')});
   }
 
 
