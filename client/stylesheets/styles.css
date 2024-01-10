@@ -2,8 +2,25 @@
     width: 100%;
     height: 100%;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 8%;
+    width: 100%;
+    background-color: #64b4fc;
 }
 
 button {
@@ -30,17 +47,16 @@ h1 {
 }
 
 .login {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     width: 350px;
     height: 400px;
-    margin-top: 12%;
     border-radius: 10px;
     border: 0.5px solid rgb(211, 217, 223);
     box-shadow: 1px 1px 2px 2px rgba(229, 232, 235, 0.4);
     align-items: center;
-
+    margin: auto;
 }
 
 #login-logo {
@@ -194,5 +210,30 @@ a:hover {
     padding: 8px;
     box-shadow: 1px 1px 2px 2px rgba(229, 232, 235, 0.4);
 
+}
 
+.navbar-links {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.navbar-link {
+    /* border: 1px solid gray;
+    background-color: rgba(229, 232, 235, 0.4); */
+    border-radius: 3px;
+    font-size: 20px;
+    padding: 4px;
+}
+
+.navbar-user-info-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* border-right: 2px solid black;
+    border-left: 2px solid black; */
+    font-weight: 600;
+    font-size: 24px;
 }
