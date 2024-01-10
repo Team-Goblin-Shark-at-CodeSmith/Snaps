@@ -7,22 +7,26 @@ const LoginContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch(`/user/login/${username}/${password}`, {})
+    const validLogin = false;
+
+    await fetch(`/user/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: username, password: password })
+    })
       .then((result) => result.json()) //value is set equal to the async result of 'result' sp result will equal value
       .then((value) => {
-        // Reset text field inputs to be empty after login pressed
-        document.getElementById("username").value = "";
-        document.getElementById("password").value = "";
-
         console.log("Reached the fetch request and received values ", value);
 
         dispatch(setSnapsList(value));
-
-        navigate("/snaps");
+        if (value === username) navigate("/snaps");
+        else alert('Username and/or password incorrect');
       })
       .catch((error) => console.error(error));
   };

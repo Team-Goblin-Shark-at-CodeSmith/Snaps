@@ -2,7 +2,7 @@ const db = require('../models/snapsModel');
 
 const snapsController = {};
 
-snapsController.addSnap = async(req, res, next) => {
+snapsController.addSnap = async (req, res, next) => {
 
   try {
     const queryObj = {
@@ -16,8 +16,11 @@ snapsController.addSnap = async(req, res, next) => {
       text: 'SELECT Snaps.user_id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Snaps.user_id = $1;',
       values: [req.body.user_id],
     };
+
     const allSnaps = await db.query(getAllQuery);
     // console.log(user);
+
+    // MH - This gets sent back to the SnapsContainer and is dispatched to the setSnapsList reducer
     res.locals.allSnaps = allSnaps.rows;
 
     return next();
