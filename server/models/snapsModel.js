@@ -13,3 +13,7 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 };
+
+//run file  qu.
+
+//add a couple more users 
