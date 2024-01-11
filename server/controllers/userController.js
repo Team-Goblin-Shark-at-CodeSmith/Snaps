@@ -18,7 +18,7 @@ userController.login = async (req, res, next) => {
 
   try {
     const user = await db.query(userLoginQuery, userQueryValues);
-
+    console.log('user: ', user);
     if (req.body.username === user.rows[0].username) {
       console.log('USERNAME MATCHES');
     }
