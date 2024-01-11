@@ -86,7 +86,7 @@ snapsController.addSnap = async (req, res, next) => {
 
     const getAllQuery = {
       text: `SELECT * FROM users LEFT OUTER JOIN snaps ON users.id = snaps.user_id WHERE snaps.user_id = $1;`,
-      values: [req.body.user_id],
+      values: [req.cookies.userID],
     };
 
     const allSnaps = await db.query(getAllQuery);
