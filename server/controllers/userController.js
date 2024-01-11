@@ -1,6 +1,7 @@
 const db = require('../models/snapsModel');
 
 
+
 const userController = {};
 
 userController.login = async (req, res, next) => {
@@ -37,7 +38,13 @@ userController.login = async (req, res, next) => {
 }
 
 userController.signup = async (req, res, next) => {
-
+const userQueryValues = [
+  req.body.username,
+  req.body.password,
+  req.body.email,
+  req.body.firstName,
+  req.body.lastName,
+];
   try {
     const queryObj = {
       text: 'INSERT INTO Users (username, password, email, firstname, lastname ) VALUES ($1, $2, $3, $4, $5)',
