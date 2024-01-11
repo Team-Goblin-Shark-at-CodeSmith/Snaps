@@ -23,7 +23,7 @@ const SnapsContainer = () => {
     snapsComponentList.push(
       <Snap
         key={snapsList[i].snap_id}
-        snap_text={snapsList[i].snap_text}
+        snap_text={snapsList[i].snap}
         title={snapsList[i].title}
         url={snapsList[i].url}
       />
@@ -90,10 +90,10 @@ const SnapsContainer = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: snapsList[0].user_id,
+          user_id: 1/*snapsList[0].user_id*/, //hardcoded this until we implement this feature
           title: userTitleInput,
           url: userUrlInput,
-          snap_text: summary,
+          snap: summary,
         }),
       })
         .then((res) => res.json())
