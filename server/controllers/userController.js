@@ -83,19 +83,24 @@ userController.settings = async (req, res, next) => {
       currUsername
     ];
 
+    console.log('settingsUpdateValues: ', settingsUpdateValues);
+
     // const settingsUpdateQuery = `UPDATE users
     // SET $1 = $2
     // WHERE username = $3;`
 
     const settingsUpdateQuery = `UPDATE users
-    SET username = 'matty'
-    WHERE username = 'Mhart1992';`
+     SET ${settingsUpdateValues[0]} = '${settingsUpdateValues[1]}'
+     WHERE username = '${settingsUpdateValues[2]}'`
+
 
     const querySubmission = await db.query(settingsUpdateQuery)
     console.log('Successfully updated users settings in middleware');
+    res.locals.updateSuccess = true;
     return next();
   }
   catch {
+    res.locals.updateSuccess = false;
     const err = {
       log: 'Error updating users table for user settings: ',
       status: 500,

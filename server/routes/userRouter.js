@@ -13,7 +13,7 @@ router.post('/signup', userController.signup, (req, res) => {
 });
 
 router.post('/settings/:id', userController.settings, (req, res) => {
-  return res.status(200).json(res.locals.settings);
+  return res.status(200).json(res.locals.updateSuccess);
 });
 
 
