@@ -33,9 +33,10 @@ const SnapsContainer = () => {
     console.log(process.env.REACT_APP_OPENAI_KEY);
   };
 
-  const handleAdd = (e) => {
-    // Query OpenAI API
-    // Store ChatGPT summary in database for user
+  const handleAdd = async (e) => {
+  
+    // // Query OpenAI API
+    // // Store ChatGPT summary in database for user
     let translated = (async () => {
       const rawResponse = await fetch(
         "https://api.openai.com/v1/chat/completions",
