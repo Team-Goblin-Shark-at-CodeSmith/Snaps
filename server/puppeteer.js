@@ -7,7 +7,7 @@ const scrapePage = (async () => {
     await page.goto('https://en.wikipedia.org/wiki/Simulation_hypothesis');
 
     const grabIntro = await page.evaluate(() => {
-        const pageText = document.querySelector('.mw-content-ltr mw-parser-output p', );
+        const pageText = document.querySelector('#mw-content-text p', );
         return pageText.innerText;
     })
 
