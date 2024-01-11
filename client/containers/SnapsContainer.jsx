@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Snap from "../components/Snap.jsx";
 import { setSnapsList } from "../redux/snapsSlice.js";
+import Navbar from "../components/Navbar.jsx";
 
 const SnapsContainer = () => {
   // MH - useSelector is how we connect react to redux. It allows us to access whatever piece of state we desire. In this case, our snapsList
@@ -110,27 +111,32 @@ const SnapsContainer = () => {
     })();
   };
 
+
+
   return (
-    <div id="snaps-container">
-      <img id="snaps-page-logo" src="./images/snaps-page-logo.png" />
-      {/* <h1>My Snaps</h1> */}
-      <table className="snaps-table container">{snapsComponentList}</table>
-      <input
-        type="title"
-        className="snaps-input"
-        id="titleInput"
-        placeholder="Enter a title..."
-      />
-      <input
-        type="url"
-        className="snaps-input"
-        id="urlInput"
-        placeholder="Enter a URL..."
-      />
-      <button id="add-button" onClick={handleAdd}>
-        Add
-      </button>
-    </div>
+    <>
+      <Navbar />
+      <div id="snaps-container">
+        <img id="snaps-page-logo" src="./images/snaps-page-logo.png" />
+        {/* <h1>My Snaps</h1> */}
+        <table className="snaps-table container">{snapsComponentList}</table>
+        <input
+          type="title"
+          className="snaps-input"
+          id="titleInput"
+          placeholder="Enter a title..."
+        />
+        <input
+          type="url"
+          className="snaps-input"
+          id="urlInput"
+          placeholder="Enter a URL..."
+        />
+        <button id="add-button" onClick={handleAdd}>
+          Add
+        </button>
+      </div>
+    </>
   );
 };
 

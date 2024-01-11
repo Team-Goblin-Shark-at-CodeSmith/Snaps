@@ -57,4 +57,9 @@ userController.signup = async (req, res, next) => {
   }
 };
 
+userController.settings = async (req, res, next) => {
+
+
+}
+
 module.exports = userController;
