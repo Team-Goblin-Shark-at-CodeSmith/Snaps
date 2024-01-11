@@ -1,8 +1,11 @@
 import React from 'react';
-import { BrowserRouter as useNavigate } from 'react-router-dom';
+// import { BrowserRouter as useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar.jsx';
 
 const SettingsContainer = () => {
+
+    const navigate = useNavigate();
 
     const updateUsernameHandler = () => {
 
@@ -19,6 +22,8 @@ const SettingsContainer = () => {
         })
             .then((res) => {
                 console.log('Settings Update Fetch Response: ', res);
+                document.getElementById('username-update').value = "";
+                alert('Successfully updated username!');
             })
             .catch((err) => {
             })

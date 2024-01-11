@@ -13,17 +13,17 @@ userController.login = async (req, res, next) => {
     req.body.password,
   ];
 
-  const userLoginQuery = `SELECT username
+  const userLoginQuery = `SELECT username, id
     FROM users WHERE username = $1
     AND password = $2`
 
   try {
     const user = await db.query(userLoginQuery, userQueryValues);
-    console.log('user: ', user);
-    if (req.body.username === user.rows[0].username) {
-      console.log('USERNAME MATCHES');
+    console.log('user.rows: ', user.rows);
+    if (user.rows[0]) {
+      console.log('USER FOUND');
     }
-    res.locals.username = req.body.username;
+    res.locals = user.rows;
 
     return next();
   }
@@ -83,19 +83,24 @@ userController.settings = async (req, res, next) => {
       currUsername
     ];
 
+    console.log('settingsUpdateValues: ', settingsUpdateValues);
+
     // const settingsUpdateQuery = `UPDATE users
     // SET $1 = $2
     // WHERE username = $3;`
 
     const settingsUpdateQuery = `UPDATE users
-    SET username = 'matty'
-    WHERE username = 'Mhart1992';`
+     SET ${settingsUpdateValues[0]} = '${settingsUpdateValues[1]}'
+     WHERE username = '${settingsUpdateValues[2]}'`
+
 
     const querySubmission = await db.query(settingsUpdateQuery)
     console.log('Successfully updated users settings in middleware');
+    res.locals.updateSuccess = true;
     return next();
   }
   catch {
+    res.locals.updateSuccess = false;
     const err = {
       log: 'Error updating users table for user settings: ',
       status: 500,
