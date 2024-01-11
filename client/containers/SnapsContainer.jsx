@@ -43,7 +43,7 @@ const SnapsContainer = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: 1, //snapsList[0].user_id,
+        user_id: 29, //snapsList[0].user_id,
         title: userTitleInput,
         url: userUrlInput,
       }),
