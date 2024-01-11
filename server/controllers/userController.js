@@ -13,17 +13,17 @@ userController.login = async (req, res, next) => {
     req.body.password,
   ];
 
-  const userLoginQuery = `SELECT username
+  const userLoginQuery = `SELECT username, id
     FROM users WHERE username = $1
     AND password = $2`
 
   try {
     const user = await db.query(userLoginQuery, userQueryValues);
-    console.log('user: ', user);
-    if (req.body.username === user.rows[0].username) {
-      console.log('USERNAME MATCHES');
+    console.log('user.rows: ', user.rows);
+    if (user.rows[0]) {
+      console.log('USER FOUND');
     }
-    res.locals.username = req.body.username;
+    res.locals = user.rows;
 
     return next();
   }
