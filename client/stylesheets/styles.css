@@ -14,15 +14,6 @@
     height: 100vh;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 8%;
-    width: 100%;
-    background-color: #64b4fc;
-}
-
 button {
     cursor: pointer;
 }
@@ -116,15 +107,12 @@ th {
 
 
 #snaps-container {
-
     width: 100%;
     height: 100%;
     margin: 3%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
 }
 
 #snaps-container>* {
@@ -196,7 +184,6 @@ a:hover {
 }
 
 #add-button {
-
     width: 320px;
     margin: 10px auto 200px;
     margin-bottom: 200px;
@@ -209,7 +196,17 @@ a:hover {
     font-weight: bold;
     padding: 8px;
     box-shadow: 1px 1px 2px 2px rgba(229, 232, 235, 0.4);
+}
 
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 55px;
+    width: 100%;
+    background-color: #64b4fc;
+    position: absolute;
+    top: 0px;
 }
 
 .navbar-links {
@@ -224,7 +221,7 @@ a:hover {
     /* border: 1px solid gray;
     background-color: rgba(229, 232, 235, 0.4); */
     border-radius: 3px;
-    font-size: 20px;
+    font-size: 16px;
     padding: 4px;
 }
 
@@ -236,4 +233,60 @@ a:hover {
     border-left: 2px solid black; */
     font-weight: 600;
     font-size: 24px;
+}
+
+#userAvatar {
+    width: 35px;
+    height: 35px
+}
+
+#settings-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 350px;
+    height: 370px;
+    border-radius: 10px;
+    border: 0.5px solid rgb(211, 217, 223);
+    box-shadow: 1px 1px 2px 2px rgba(229, 232, 235, 0.4);
+    text-align: center;
+}
+
+.settings-input {
+    font-size: 15px;
+    border-radius: 5px;
+    border: 0.5px solid rgb(178, 178, 178);
+    height: 35px;
+    width: 300px;
+    margin: 3px auto;
+    padding: 5px 10px;
+    text-indent: 10px;
+    box-shadow: 1px 1px 2px 2px rgba(229, 232, 235, 0.4);
+}
+
+#submit-settings {
+    width: 320px;
+    margin: 10px auto 200px;
+    margin-bottom: 200px;
+    border-radius: 5px;
+    background-color: #64b4fc;
+    border-radius: 5px;
+    border: none;
+    color: rgb(251, 251, 251);
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px;
+    box-shadow: 1px 1px 2px 2px rgba(229, 232, 235, 0.4);
+}
+
+.settings-buttons {
+    height: 7%;
+    width: 80.5%;
+    margin: 10px auto;
+    background-color: #64b4fc;
+    border-radius: 5px;
+    border: none;
+    color: rgb(251, 251, 251);
+    font-size: 15px;
+    font-weight: bold;
 }

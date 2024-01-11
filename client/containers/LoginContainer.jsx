@@ -37,33 +37,35 @@ const LoginContainer = () => {
 
   return (
     //added placeholders instead of using labels
-    <div className="login">
-      <img id="login-logo" src="./images/snaps-logo.png" />
-      <input
-        type="text"
-        id="username"
-        className="login-input"
-        autoComplete="off"
-        placeholder="Username"
-      ></input>
-      <input
-        type="password"
-        id="password"
-        className="login-input"
-        placeholder="Password"
-      ></input>
-      <button className="Login" onClick={loginHandler}>
-        {" "}
-        Login{" "}
-      </button>
-      <button
-        className="signup-button"
-        aria-label="Sign Up"
-        onClick={signupHandler}
-      >
-        Don't have an account? <span id="signup-blue"> Sign Up</span>{" "}
-      </button>
-    </div>
+    <>
+      <div className="login">
+        <img id="login-logo" src="./images/snaps-logo.png" />
+        <input
+          type="text"
+          id="username"
+          className="login-input"
+          autoComplete="off"
+          placeholder="Username"
+        ></input>
+        <input
+          type="password"
+          id="password"
+          className="login-input"
+          placeholder="Password"
+        ></input>
+        <button className="Login" onClick={loginHandler}>
+          {" "}
+          Login{" "}
+        </button>
+        <button
+          className="signup-button"
+          aria-label="Sign Up"
+          onClick={signupHandler}
+        >
+          Don't have an account? <span id="signup-blue"> Sign Up</span>{" "}
+        </button>
+      </div>
+    </>
   );
 };
 
