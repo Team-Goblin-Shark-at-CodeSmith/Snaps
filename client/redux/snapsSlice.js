@@ -13,7 +13,6 @@ const snapsSlice = createSlice({
     reducers: {
         // MH - setSnapsList reducer takes state and an action as args
         setSnapsList: (state, action) => {
-            console.log("action here ", action)
             // MH - Resets the passed in state's snapsList to an empty array
             state.snapsList = [];
 

@@ -3,9 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/userController');
+const snapsController = require('../controllers/snapsController');
 
-router.post('/login', userController.login, (req, res) => {
-  return res.status(200).json(res.locals.username);
+router.post('/login',
+  userController.login, 
+  snapsController.getSnaps, 
+  (req, res) => {
+    return res.status(200).json(res.locals); //add in res.locals.allSnaps
 });
 
 router.post('/signup', userController.signup, (req, res) => {

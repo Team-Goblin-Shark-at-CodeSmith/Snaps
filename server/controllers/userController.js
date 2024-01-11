@@ -5,26 +5,21 @@ const db = require('../models/snapsModel');
 const userController = {};
 
 userController.login = async (req, res, next) => {
-  console.log('req.body.username: ', req.body.username);
-  console.log('req.body.password: ', req.body.password);
-
   const userQueryValues = [
     req.body.username,
     req.body.password,
   ];
-
-  const userLoginQuery = `SELECT username
+  const userLoginQuery = `SELECT username, id
     FROM users WHERE username = $1
     AND password = $2`
 
   try {
     const user = await db.query(userLoginQuery, userQueryValues);
-    console.log('user: ', user);
     if (req.body.username === user.rows[0].username) {
       console.log('USERNAME MATCHES');
     }
     res.locals.username = req.body.username;
-
+    res.locals.id = user.rows[0].id;
     return next();
   }
   catch {
@@ -33,8 +28,6 @@ userController.login = async (req, res, next) => {
       message: 'Error with SQL query!!!'
     });
   }
-
-
 }
 
 userController.signup = async (req, res, next) => {

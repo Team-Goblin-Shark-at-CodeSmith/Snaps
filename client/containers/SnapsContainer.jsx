@@ -11,6 +11,7 @@ const SnapsContainer = () => {
   const dispatch = useDispatch();
 
   console.log(" SNAPS LIST FROM STATE ", snapsList);
+  
 
   //create a variable to hold all snap components
   const snapsComponentList = [
@@ -60,8 +61,6 @@ const SnapsContainer = () => {
         console.log("Error in addSnap");
       });
   };
-
-
 
   return (
     <>
