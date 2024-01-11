@@ -10,13 +10,14 @@ snapsController.scrapeWeb = async (req, res, next) => {
 
     await page.goto(`${req.body.url}`);
 
-    const grabIntro = await page.evaluate(() => {
-        const pageText = document.querySelector('#mw-content-text p', );
-        return pageText.innerText;
-    })
+    const grabText = await page.$eval('*', (el) => {
+      const pageText = el.innerText;
+      return pageText;
+    });
 
     await browser.close();
-    res.locals.scrape = grabIntro;
+    res.locals.scrape = grabText;
+  
     return next();
   } catch (error) {
       const err = {
@@ -41,11 +42,11 @@ snapsController.makeApiCall = async (req, res, next) =>  {
             Authorization: `Bearer ` + process.env.REACT_APP_OPENAI_KEY,
         },
         body: JSON.stringify({
-            model: "gpt-3.5-turbo",
+            model: "gpt-4",
             messages: [
             {
                 role: "user",
-                content: `Summarize this paragraph in a single sentence: ${res.locals.scrape}`,
+                content: `Summarize the text from this article in a two sentences: ${res.locals.scrape}`,
             },
             ],
             temperature: 0.7,
