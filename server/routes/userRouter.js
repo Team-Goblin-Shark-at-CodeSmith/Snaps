@@ -9,7 +9,7 @@ router.post('/login',
   userController.login, 
   snapsController.getSnaps, 
   (req, res) => {
-    return res.status(200).json(res.locals); //add in res.locals.allSnaps
+    return res.status(200).json(res.locals);
 });
 
 router.post('/signup', userController.signup, (req, res) => {
@@ -17,7 +17,7 @@ router.post('/signup', userController.signup, (req, res) => {
 });
 
 router.post('/settings/:id', userController.settings, (req, res) => {
-  return res.status(200).json(res.locals.settings);
+  return res.status(200).json(res.locals.updateSuccess);
 });
 
 
