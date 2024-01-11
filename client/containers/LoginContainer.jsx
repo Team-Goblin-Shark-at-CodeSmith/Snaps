@@ -25,9 +25,9 @@ const LoginContainer = () => {
         console.log("Reached the fetch request and received values ", value);
 
         // ! This dispatch should be sending a list of the users snaps
-        // dispatch(setSnapsList(value.username));
+        dispatch(setSnapsList(value.allSnaps));
 
-        if (value[0] && value[0].username === username) navigate("/snaps");
+        if (value.username && value.username === username) navigate("/snaps");
         else {
           document.getElementById("username").value = ""
           document.getElementById("password").value = "";

@@ -35,6 +35,7 @@ snapsController.scrapeWeb = async (req, res, next) => {
 
 snapsController.makeApiCall = async (req, res, next) =>  {
   try {
+    console.log('this is the data scraped by the web scraper: ', res.locals.scrape)
     // these lines of code must be written this way to properly make a request to Open AI
     const rawResponse = await fetch(
         "https://api.openai.com/v1/chat/completions",
@@ -89,10 +90,31 @@ snapsController.addSnap = async (req, res, next) => {
     
     const allSnaps = await db.query(getAllQuery);
     res.locals.allSnaps = allSnaps.rows;
+
     return next();
   } catch {
     const err = {
       log: 'Express error handler caught error in snapsController.addSnap',
+      status: 500,
+      message: { err: 'A massive error occured' },
+    }
+    return next(err);
+  }
+}
+
+snapsController.getSnaps = async (req, res, next) => {
+  try {
+      const getAllQuery = {
+        text: `SELECT * FROM users LEFT OUTER JOIN snaps ON users.id = snaps.user_id WHERE snaps.user_id = $1;`,
+        values: [res.locals.id],
+      };
+
+      const allSnaps = await db.query(getAllQuery);
+      res.locals.allSnaps = allSnaps.rows;
+    return next();
+  } catch {
+    const err = {
+      log: 'Express error handler caught error in snapsController.getSnaps',
       status: 500,
       message: { err: 'A massive error occured' },
     }

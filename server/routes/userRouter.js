@@ -3,9 +3,14 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/userController');
+const snapsController = require('../controllers/snapsController');
 
-router.post('/login', userController.login, (req, res) => {
-  return res.status(200).json(res.locals);
+router.post('/login',
+  userController.login, 
+  snapsController.getSnaps, 
+  (req, res) => {
+    console.log('made it through middleware');
+    return res.status(200).json(res.locals);
 });
 
 router.post('/signup', userController.signup, (req, res) => {
@@ -15,6 +20,5 @@ router.post('/signup', userController.signup, (req, res) => {
 router.post('/settings/:id', userController.settings, (req, res) => {
   return res.status(200).json(res.locals.updateSuccess);
 });
-
 
 module.exports = router;

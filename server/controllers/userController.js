@@ -5,9 +5,6 @@ const db = require('../models/snapsModel');
 const userController = {};
 
 userController.login = async (req, res, next) => {
-  console.log('req.body.username: ', req.body.username);
-  console.log('req.body.password: ', req.body.password);
-
   const userQueryValues = [
     req.body.username,
     req.body.password,
@@ -19,12 +16,13 @@ userController.login = async (req, res, next) => {
 
   try {
     const user = await db.query(userLoginQuery, userQueryValues);
-    console.log('user.rows: ', user.rows);
-    if (user.rows[0]) {
-      console.log('USER FOUND');
+    console.log('user: ', user);
+    if (req.body.username === user.rows[0].username) {
+      console.log('USERNAME MATCHES');
     }
-    res.locals = user.rows;
-
+    res.locals.username = req.body.username;
+    res.locals.id = user.rows[0].id;
+    console.log(res.locals.id);
     return next();
   }
   catch {
@@ -33,8 +31,6 @@ userController.login = async (req, res, next) => {
       message: 'Error with SQL query!!!'
     });
   }
-
-
 }
 
 userController.signup = async (req, res, next) => {
@@ -49,12 +45,9 @@ userController.signup = async (req, res, next) => {
     const queryObj = {
       text: 'INSERT INTO Users (username, password, email, firstname, lastname ) VALUES ($1, $2, $3, $4, $5)',
       values: [req.body.username, req.body.password, req.body.email, req.body.firstName, req.body.lastName],
-      // console.log('this is what is being sent in ', req.body.firstname)
     };
     const newUser = await db.query(queryObj);
-    console.log(newUser, 'newuser');
     res.locals.newUser = newUser.rows;
-    console.log('this is user', username);
     return next();
   } catch {
     const err = {
