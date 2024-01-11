@@ -23,7 +23,7 @@ const SnapsContainer = () => {
     snapsComponentList.push(
       <Snap
         key={snapsList[i].snap_id}
-        snap_text={snapsList[i].snap_text}
+        snap_text={snapsList[i].snap}
         title={snapsList[i].title}
         url={snapsList[i].url}
       />
