@@ -47,13 +47,7 @@ console.log(content);
 return content;
 }
 
-
-
-
-
 //-----------------------------------------
-
-
 
 
 const snapsController = {};
@@ -67,13 +61,9 @@ snapsController.addSnap = async (req, res, next) => {
     const summary = snapText.choices[0].message.content.toString();
     console.log(summary);
 
-
-
     const queryObj = {
-      text: 'INSERT INTO Snaps (user_id, title, url, snap_text) VALUES ($1, $2, $3, $4)',
-      values: [req.body.user_id, req.body.title, req.body.url, summary],
       text: 'INSERT INTO Snaps (user_id, title, url, snap) VALUES ($1, $2, $3, $4)',
-      values: [req.body.user_id, req.body.title, req.body.url, req.body.snap],
+      values: [req.body.user_id, req.body.title, req.body.url, summary],
     };
 
     await db.query(queryObj);
@@ -96,7 +86,5 @@ snapsController.addSnap = async (req, res, next) => {
     return next(err);
   }
 }
-
-
 
 module.exports = snapsController;
