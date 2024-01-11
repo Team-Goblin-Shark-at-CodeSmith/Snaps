@@ -15,14 +15,13 @@ const snapsSlice = createSlice({
         setSnapsList: (state, action) => {
             // MH - Resets the passed in state's snapsList to an empty array
             state.snapsList = [];
-
             // MH - When the SnapsContainer dispatches this action, it's sending the array of Snaps received from the SELECT query on the Snaps table in snapsController as the action.payload here.:
             for (let i = 0; i < action.payload.length; i++) {
 
                 state.snapsList.push(action.payload[i]);
-            }
+            }                
             //! MH - I'm not sure what this is doing yet
-            state.user_id = action.payload[0].user_id;
+            state.user_id = action.payload.id;
         },
     }
 })
