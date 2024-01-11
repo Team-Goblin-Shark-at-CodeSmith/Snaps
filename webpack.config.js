@@ -17,7 +17,9 @@ module.exports = {
     liveReload: true,
     proxy: {
       '/user': 'http://localhost:3000',
-      '/my-snaps': 'http://localhost:3000'
+      '/my-snaps': 'http://localhost:3000',
+      '/settings': 'http://localhost:3000',
+      '/signup': 'http://localhost:3000'
     },
   },
   module: {

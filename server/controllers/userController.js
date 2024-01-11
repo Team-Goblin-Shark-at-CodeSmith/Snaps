@@ -60,18 +60,23 @@ userController.signup = async (req, res, next) => {
 userController.settings = async (req, res, next) => {
   console.log('Inside of settings middleware');
   try {
-    //! Need to get current username and add below
+
+    console.log('req.params.id: ', req.params.id);
+    console.log('req.body.value: ', req.body.value);
+
+    // //! Need to get current username and add below
     const currUsername = "mhart";
 
-    const settingsUpdateQuery = `UPDATE TABLE users
-    SET username = $1, email = $2, password = $3
-    WHERE username =  ${currUsername}`
 
     const settingsUpdateValues = [
-      req.body.email,
-      req.body.username,
-      req.body.password
+      req.params.id,
+      req.body.value,
+      currUsername
     ];
+
+    const settingsUpdateQuery = `UPDATE TABLE users
+    SET $1 = $2
+    WHERE username =  $3`
 
     const querySubmission = await db.query(settingsUpdateQuery, settingsUpdateValues)
     console.log('Successfully updated users settings in middleware');
@@ -79,7 +84,7 @@ userController.settings = async (req, res, next) => {
   }
   catch {
     const err = {
-      log: { 'Error updating users table for user settings: ': err },
+      log: 'Error updating users table for user settings: ',
       status: 500,
       message: 'An error occured updating your settings. Please try again',
     };
