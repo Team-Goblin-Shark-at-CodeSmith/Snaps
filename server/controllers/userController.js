@@ -38,13 +38,13 @@ userController.login = async (req, res, next) => {
 }
 
 userController.signup = async (req, res, next) => {
-const userQueryValues = [
-  req.body.username,
-  req.body.password,
-  req.body.email,
-  req.body.firstName,
-  req.body.lastName,
-];
+  const userQueryValues = [
+    req.body.username,
+    req.body.password,
+    req.body.email,
+    req.body.firstName,
+    req.body.lastName,
+  ];
   try {
     const queryObj = {
       text: 'INSERT INTO Users (username, password, email, firstname, lastname ) VALUES ($1, $2, $3, $4, $5)',
@@ -74,7 +74,7 @@ userController.settings = async (req, res, next) => {
     console.log('req.body.value: ', req.body.value);
 
     // //! Need to get current username and add below
-    const currUsername = "mhart";
+    const currUsername = "Mhart1992";
 
 
     const settingsUpdateValues = [
@@ -83,11 +83,15 @@ userController.settings = async (req, res, next) => {
       currUsername
     ];
 
-    const settingsUpdateQuery = `UPDATE TABLE users
-    SET $1 = $2
-    WHERE username =  $3`
+    // const settingsUpdateQuery = `UPDATE users
+    // SET $1 = $2
+    // WHERE username = $3;`
 
-    const querySubmission = await db.query(settingsUpdateQuery, settingsUpdateValues)
+    const settingsUpdateQuery = `UPDATE users
+    SET username = 'matty'
+    WHERE username = 'Mhart1992';`
+
+    const querySubmission = await db.query(settingsUpdateQuery)
     console.log('Successfully updated users settings in middleware');
     return next();
   }
