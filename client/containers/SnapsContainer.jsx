@@ -11,7 +11,7 @@ const SnapsContainer = () => {
   const dispatch = useDispatch();
 
   console.log(" SNAPS LIST FROM STATE ", snapsList);
-  
+
 
   //create a variable to hold all snap components
   const snapsComponentList = [
@@ -43,7 +43,7 @@ const SnapsContainer = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: 29, //snapsList[0].user_id,
+        user_id: 27, //snapsList[0].user_id,
         title: userTitleInput,
         url: userUrlInput,
       }),

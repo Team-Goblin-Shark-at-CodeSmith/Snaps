@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 3000;
 
@@ -9,6 +10,7 @@ const snapsRouter = require('./routes/snapsRouter');
 // Handle parsing of request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Handle requests for static files
 app.use(express.static(path.resolve(__dirname, '../public')));
