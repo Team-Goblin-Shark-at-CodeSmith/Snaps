@@ -1,45 +1,53 @@
 const db = require('../models/snapsModel');
 
 
+
 const userController = {};
 
 userController.login = async (req, res, next) => {
-  console.log('inside login controller!');
-  console.log(
-    'this is req.params stuff',
-    req.params.username,
-    req.params.password
-  );
+  const userQueryValues = [
+    req.body.username,
+    req.body.password,
+  ];
+
+  const userLoginQuery = `SELECT username, id
+    FROM users WHERE username = $1
+    AND password = $2`
+
   try {
-    const queryObj = {
-      text: 'SELECT Snaps.user_id, Snaps.snap_id, Snaps.title, Snaps.url, Snaps.snap_text FROM Snaps LEFT OUTER JOIN Users ON Users.id = Snaps.user_id WHERE Users.username = $1 AND Users.password = $2;',
-      values: [req.params.username, req.params.password],
-    };
-    const user = await db.query(queryObj);
-    // console.log(user);
-    res.locals.user = user.rows;
-    // console.log('this is user', user);
+    const user = await db.query(userLoginQuery, userQueryValues);
+    console.log('user: ', user);
+    if (req.body.username === user.rows[0].username) {
+      console.log('USERNAME MATCHES');
+    }
+    res.locals.username = req.body.username;
+    res.locals.id = user.rows[0].id;
+    console.log(res.locals.id);
     return next();
-  } catch {
-    const err = {
-      log: 'Express error handler caught error in userController.login',
-      status: 500,
-      message: { err: 'A massive error occured' + JSON.stringify(process.env) },
-    };
-    return next(err);
   }
-};
+  catch {
+    return next({
+      log: 'Error with SQL query!!!',
+      message: 'Error with SQL query!!!'
+    });
+  }
+}
 
 userController.signup = async (req, res, next) => {
+  const userQueryValues = [
+    req.body.username,
+    req.body.password,
+    req.body.email,
+    req.body.firstName,
+    req.body.lastName,
+  ];
   try {
     const queryObj = {
-      text: 'INSERT INTO Users (username, password) VALUES ($1, $2)',
-      values: [req.body.username, req.body.password],
+      text: 'INSERT INTO Users (username, password, email, firstname, lastname ) VALUES ($1, $2, $3, $4, $5)',
+      values: [req.body.username, req.body.password, req.body.email, req.body.firstName, req.body.lastName],
     };
     const newUser = await db.query(queryObj);
-    console.log(newUser, 'newuser');
     res.locals.newUser = newUser.rows;
-    // console.log('this is user', user);
     return next();
   } catch {
     const err = {
@@ -50,5 +58,49 @@ userController.signup = async (req, res, next) => {
     return next(err);
   }
 };
+
+userController.settings = async (req, res, next) => {
+  console.log('Inside of settings middleware');
+  try {
+
+    console.log('req.params.id: ', req.params.id);
+    console.log('req.body.value: ', req.body.value);
+
+    // //! Need to get current username and add below
+    const currUsername = "Mhart1992";
+
+
+    const settingsUpdateValues = [
+      req.params.id,
+      req.body.value,
+      currUsername
+    ];
+
+    console.log('settingsUpdateValues: ', settingsUpdateValues);
+
+    // const settingsUpdateQuery = `UPDATE users
+    // SET $1 = $2
+    // WHERE username = $3;`
+
+    const settingsUpdateQuery = `UPDATE users
+     SET ${settingsUpdateValues[0]} = '${settingsUpdateValues[1]}'
+     WHERE username = '${settingsUpdateValues[2]}'`
+
+
+    const querySubmission = await db.query(settingsUpdateQuery)
+    console.log('Successfully updated users settings in middleware');
+    res.locals.updateSuccess = true;
+    return next();
+  }
+  catch {
+    res.locals.updateSuccess = false;
+    const err = {
+      log: 'Error updating users table for user settings: ',
+      status: 500,
+      message: 'An error occured updating your settings. Please try again',
+    };
+    return next(err);
+  }
+}
 
 module.exports = userController;

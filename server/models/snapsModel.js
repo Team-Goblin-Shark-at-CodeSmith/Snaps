@@ -13,3 +13,6 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 };
+
+// pool.query('SELECT * FROM users')
+// .then((data) => console.log(data))
