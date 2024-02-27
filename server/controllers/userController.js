@@ -73,7 +73,7 @@ userController.settings = async (req, res, next) => {
     const settingsUpdateValues = [
       req.params.id,
       req.body.value,
-      currUsername
+      req.cookies.userID
     ];
 
     console.log('settingsUpdateValues: ', settingsUpdateValues);
@@ -84,7 +84,7 @@ userController.settings = async (req, res, next) => {
 
     const settingsUpdateQuery = `UPDATE users
      SET ${settingsUpdateValues[0]} = '${settingsUpdateValues[1]}'
-     WHERE username = '${settingsUpdateValues[2]}'`
+     WHERE id = '${settingsUpdateValues[2]}'`
 
 
     const querySubmission = await db.query(settingsUpdateQuery)
